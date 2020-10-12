@@ -31,7 +31,7 @@ The manual for the "SMARTer PCR cDNA Synthesis Kit" (available at: https://www.t
 
 ### [SEE SCREEN CAPTURE 1] ##
 Inline-style:
-![alt text][screencap1]
+![screencap1][screencap1]
 
 
 The sequence labelled "SMARTer II A Oligonucleotide" corresponds to the sequence above labelled "Clontech_5p"
@@ -136,7 +136,7 @@ All of the data and scripts required to check these observations are included in
 
 
 
-[screencap1]: https://github.com/RAWWiberg/isoseq_explorations/master/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
+[screencap1]: https://github.com/RAWWiberg/isoseq_explorations/master/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.jpeg "screencap1"
 
 
 
