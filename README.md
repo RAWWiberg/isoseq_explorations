@@ -9,7 +9,7 @@ However, it's not immediately obvious what the primer sequences should actually 
 The result is that there are several sets of primer sequences that one could choose from.
 
 ### i) The clustering workflow described on the isoseq3 github repository
-The workflow description at (https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md) gives the following option:
+The workflow description at [The isoseq3 github repository](https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md) gives the following option:
 
 "Example 1: Following is the primer.fasta for the Clontech SMARTer and NEB cDNA library prep, which are the officially recommended protocols:"
 
@@ -30,8 +30,7 @@ The manual for the "SMARTer PCR cDNA Synthesis Kit" (available at: https://www.t
 
 
 ### [SEE SCREEN CAPTURE 1] ##
-Inline-style: 
-![alt text](https://github.com/RAWWiberg/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "")
+Inline-style: ![alt text](https://github.com/RAWWiberg/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1")
 
 
 The sequence labelled "SMARTer II A Oligonucleotide" corresponds to the sequence above labelled "Clontech_5p"
