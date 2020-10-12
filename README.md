@@ -29,7 +29,9 @@ Indeed, an earlier (2014-2015) PacBio "Procedures and Checklist" document ("Proc
 The manual for the "SMARTer PCR cDNA Synthesis Kit" (available at: https://www.takarabio.com/documents/User%20Manual/SMARTer%20PCR%20cDNA%20Synthesis%20Kit%20User%20Manual%20%28PT4097-1%29_040114.pdf) lists the components and gives the sequences of the included primers:
 
 
-## [SEE SCREEN CAPTURE 1] ##
+### [SEE SCREEN CAPTURE 1] ##
+Inline-style: 
+![alt text](https://github.com/RAWWiberg/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "")
 
 
 The sequence labelled "SMARTer II A Oligonucleotide" corresponds to the sequence above labelled "Clontech_5p"
