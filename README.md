@@ -13,12 +13,12 @@ The workflow description at [The isoseq3 github repository](https://github.com/P
 
 "Example 1: Following is the primer.fasta for the Clontech SMARTer and NEB cDNA library prep, which are the officially recommended protocols:"
 
->NEB_5p
-GCAATGAAGTCGCAGGGTTGGG
->Clontech_5p
-AAGCAGTGGTATCAACGCAGAGTACATGGGG
->NEB_Clontech_3p
-GTACTCTGCGTTGATACCACTGCTT
+    >NEB_5p
+    GCAATGAAGTCGCAGGGTTGGG
+    >Clontech_5p
+    AAGCAGTGGTATCAACGCAGAGTACATGGGG
+    >NEB_Clontech_3p
+    GTACTCTGCGTTGATACCACTGCTT
 
 Which, for some reason, gives two possibilities for a 5p primer.
 
@@ -30,7 +30,8 @@ The manual for the "SMARTer PCR cDNA Synthesis Kit" (available at: https://www.t
 
 
 ### [SEE SCREEN CAPTURE 1] ##
-Inline-style: ![alt text](https://github.com/RAWWiberg/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1")
+Inline-style:
+![alt text][screencap1]
 
 
 The sequence labelled "SMARTer II A Oligonucleotide" corresponds to the sequence above labelled "Clontech_5p"
@@ -43,7 +44,7 @@ Preparation for Sequel ® and Sequel II Systems"; PN 101-763-800 Version 02 (Oct
 The NEB website and FAQ (available at: https://international.neb.com/products/e6421-nebnext-single-cell-low-input-cdna-synthesis-and-amplification-module#Product%20Information) for this kit lists the sequences included:
 
 
-## [SEE SCREEN CAPTURE 2] ##
+### [SEE SCREEN CAPTURE 2] ##
 
 
 Here, the first sequence (labelled NEBNext Template Switching Oligo") seems to contain the sequence labelled "Clontech_5p" above, but it contains several additional bases.
@@ -58,10 +59,10 @@ The story gets more complicated, though, because:
 # ii) A set of PacBio "Customer Training" slides (dated March 2020) "Iso-Seq-Express-Library-Preparation-Using-SMRTbell-Express-Template-Prep-Kit-2.0-–-Customer-Training" refers, on slide 48, to the "Procedures and Checlist" document from 2019 above (PN 101-763-800), and also gives a link (https://www.pacb.com/wp-content/uploads/IsoSeqPrimers_Express_SMRTLink6.0.fasta_.zip) to a fasta file containing "Iso-Seq Express Oligo Kit" primer sequences which it claims are required to complete the analysis. This fasta file contains the following sequences:
 
 
->5p IsoSeq Express Primer
-GCAATGAAGTCGCAGGGTT
->3p IsoSeq Express Primer
-AAGCAGTGGTATCAACGCAGAGTAC
+    >5p IsoSeq Express Primer
+    GCAATGAAGTCGCAGGGTT
+    >3p IsoSeq Express Primer
+    AAGCAGTGGTATCAACGCAGAGTAC
 
 
 Indeed the "Procedures and Checlist" (PN 101-763-800) refers to the "Iso-Seq Express Oligo Kit" in the "Materials and Kits Needed" section.
@@ -82,7 +83,7 @@ Thankfully, the primer removal steps with the lima tool (https://github.com/paci
 
 
 
-# [INSERT TEST RESULTS HERE] # 
+### [INSERT TEST RESULTS HERE] # 
 
 
 
@@ -93,22 +94,23 @@ Thankfully, the primer removal steps with the lima tool (https://github.com/paci
 
 We can also check the raw CCS reads from our Iso-Seq runs manually to see if we can spot the primers that have been incorporated. Doing this for the first 34 reads our samples we see the following:
 
-# [SAMPLE 1] # 
+### [SAMPLE 1] # 
 
-# [SAMPLE 2] # 
+### [SAMPLE 2] # 
 
-# [SAMPLE 3] # 
+### [SAMPLE 3] # 
 
-# [SAMPLE 4] # 
+### [SAMPLE 4] # 
 
 
 Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
 
-# [INSERT TEST RESULTS HERE] # 
+### [INSERT TEST RESULTS HERE] # 
 
 
 
-# 2. cDNA_Cupcake pipeline: isoseq3 post-processing and rarefaction analysis
+# 2. cDNA_Cupcake pipeline: 
+### isoseq3 post-processing and rarefaction analysis
 
 
 However, it's not clear what this rarefaction analysis is aiming to accomplish. Because the "standard" used for the analysis is all the discovered transcripts, it is really only measuring how many additional transcripts will be discovered with more sequencing effort. But perhaps a more interesting question is "how much sequencing effort do we need to get a good representation of the available transcripts?" 
@@ -134,7 +136,7 @@ All of the data and scripts required to check these observations are included in
 
 
 
-
+[screencap1]: https://github.com/RAWWiberg/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
 
 
 
