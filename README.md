@@ -29,8 +29,6 @@ Indeed, an earlier (2014-2015) PacBio "Procedures and Checklist" document ("Proc
 The manual for the "SMARTer PCR cDNA Synthesis Kit" (available [here](https://www.takarabio.com/documents/User%20Manual/SMARTer%20PCR%20cDNA%20Synthesis%20Kit%20User%20Manual%20%28PT4097-1%29_040114.pdf)) lists the components and gives the sequences of the included primers:
 
 
-### [SEE SCREEN CAPTURE 1] ##
-Inline-style:
 ![screencap1][screencap1]
 
 
@@ -45,7 +43,7 @@ The NEB website and FAQ (available at: https://international.neb.com/products/e6
 
 
 ### [SEE SCREEN CAPTURE 2] ##
-
+![screencap2][screencap2]
 
 Here, the first sequence (labelled NEBNext Template Switching Oligo") seems to contain the sequence labelled "Clontech_5p" above, but it contains several additional bases.
 The second sequence sequence (labelled "NEBNext Single Cell RT Primer") also corresponds, with some differences, to the sequence labelled "Clontech_5p". 
@@ -136,8 +134,8 @@ All of the data and scripts required to check these observations are included in
 
 
 
-[screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.jpeg "screencap1"
-
+[screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
+[screencap2]: /figures/NEBNext_Single_Cell_Low_Input_cDNA_Synthesis_and_Amplification_Module_FAQ.png "screencap2"
 
 
 
