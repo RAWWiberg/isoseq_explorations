@@ -8,7 +8,8 @@ An early step in the isoseq3 analysis pipeline, and indeed any pipeline using is
 However, it's not immediately obvious what the primer sequences should actually look like. Several "official" sources give somewhat conflicting information.
 The result is that there are several sets of primer sequences that one could choose from.
 
-# i) The clustering workflow described on the isoseq3 github site (https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md) gives the following option:
+### i) The clustering workflow described on the isoseq3 github repository
+The workflow description at (https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md) gives the following option:
 
 "Example 1: Following is the primer.fasta for the Clontech SMARTer and NEB cDNA library prep, which are the officially recommended protocols:"
 
