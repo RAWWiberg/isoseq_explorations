@@ -26,7 +26,7 @@ These, it is said, correspond to the Clontech SMARTer and NEB cDNA library prep 
 
 Indeed, an earlier (2014-2015) PacBio "Procedures and Checklist" document ("Procedure and Checklist -Isoform Sequencing (Iso-SeqTM) Using the Clontech ® SMARTer ® PCR cDNA Synthesis Kit and BluePippinTM Size-Selection System"; P/N100-377-100-05) lists the "SMARTer PCR cDNA Synthesis Kit" by Clontech (catalog numbers 634925 or 634926), as well as "Additional 5' PCR Primer IIA" as part of the required materials. (A later document "Procedure & Checklist -Iso-SeqTM Template Preparation for SequelTM Systems" P/N100-377-100-05 also cites these kits as required materials).
 
-The manual for the "SMARTer PCR cDNA Synthesis Kit" (available at: https://www.takarabio.com/documents/User%20Manual/SMARTer%20PCR%20cDNA%20Synthesis%20Kit%20User%20Manual%20%28PT4097-1%29_040114.pdf) lists the components and gives the sequences of the included primers:
+The manual for the "SMARTer PCR cDNA Synthesis Kit" (available [here](https://www.takarabio.com/documents/User%20Manual/SMARTer%20PCR%20cDNA%20Synthesis%20Kit%20User%20Manual%20%28PT4097-1%29_040114.pdf)) lists the components and gives the sequences of the included primers:
 
 
 ### [SEE SCREEN CAPTURE 1] ##
@@ -136,7 +136,7 @@ All of the data and scripts required to check these observations are included in
 
 
 
-[screencap1]: https://github.com/RAWWiberg/isoseq_explorations/tree/main/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
+[screencap1]: https://github.com/RAWWiberg/isoseq_explorations/tree/main/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.jpeg "screencap1"
 
 
 
