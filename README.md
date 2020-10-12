@@ -39,7 +39,7 @@ Meanwhile, the sequence labelled "3' SMART CDS Primer II A" also corresponds to 
 A slightly more recent PacBio (2019) "Procedures and Checklist" document ("Procedure & Checklist – Iso-SeqTM Express Template
 Preparation for Sequel ® and Sequel II Systems"; PN 101-763-800 Version 02 (October 2019)) lists the "NEBNext ® Single Cell/Low Input cDNA Synthesis & Amplification Module" by New England Biosystems, as part of the required materials.
 
-The NEB website and FAQ (available at: https://international.neb.com/products/e6421-nebnext-single-cell-low-input-cdna-synthesis-and-amplification-module#Product%20Information) for this kit lists the sequences included:
+The NEB website and FAQ (available [here](https://international.neb.com/products/e6421-nebnext-single-cell-low-input-cdna-synthesis-and-amplification-module#Product%20Information)) for this kit lists the sequences included:
 
 
 ### [SEE SCREEN CAPTURE 2] ##
@@ -54,7 +54,9 @@ So already there is a bit of confusion as to why exactly these sequences are rec
 
 The story gets more complicated, though, because:
 
-# ii) A set of PacBio "Customer Training" slides (dated March 2020) "Iso-Seq-Express-Library-Preparation-Using-SMRTbell-Express-Template-Prep-Kit-2.0-–-Customer-Training" refers, on slide 48, to the "Procedures and Checlist" document from 2019 above (PN 101-763-800), and also gives a link (https://www.pacb.com/wp-content/uploads/IsoSeqPrimers_Express_SMRTLink6.0.fasta_.zip) to a fasta file containing "Iso-Seq Express Oligo Kit" primer sequences which it claims are required to complete the analysis. This fasta file contains the following sequences:
+### ii) A set of PacBio "Customer Training" slides gives another option.
+The slides (dated March 2020) "Iso-Seq-Express-Library-Preparation-Using-SMRTbell-Express-Template-Prep-Kit-2.0-–-Customer-Training" refers, on slide 48, to the "Procedures and Checlist" document from 2019 above (PN 101-763-800), and also gives a [link](https://www.pacb.com/wp-content/uploads/IsoSeqPrimers_Express_SMRTLink6.0.fasta_.zip) to a fasta file containing "Iso-Seq Express Oligo Kit" primer sequences which it claims are required to complete the analysis. 
+This fasta file contains the following sequences:
 
 
     >5p IsoSeq Express Primer
@@ -110,6 +112,7 @@ Now we can use these sequences that we have identified and re-run the lima step 
 # 2. cDNA_Cupcake pipeline: 
 ### isoseq3 post-processing and rarefaction analysis
 
+[cDNA_Cupcake](https://github.com/Magdoll/cDNA_Cupcake)
 
 However, it's not clear what this rarefaction analysis is aiming to accomplish. Because the "standard" used for the analysis is all the discovered transcripts, it is really only measuring how many additional transcripts will be discovered with more sequencing effort. But perhaps a more interesting question is "how much sequencing effort do we need to get a good representation of the available transcripts?" 
 
