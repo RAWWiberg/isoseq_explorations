@@ -136,7 +136,7 @@ All of the data and scripts required to check these observations are included in
 
 
 
-[screencap1]: https://github.com/RAWWiberg/isoseq_eplorations/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
+[screencap1]: https://github.com/RAWWiberg/isoseq_explorations/figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
 
 
 
