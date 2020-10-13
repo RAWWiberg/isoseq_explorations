@@ -138,13 +138,22 @@ Briefly, I use the clusters produced by the isoseq3 pipeline along with the ´´
 
 ![fig1][fig1]
 
+The figure above shows the mean (solid black line), SE (black dashed lines), and max (dashed red line) percentage of BUSCO genes recovered as a function of the number of CCS reads sampled.
+Also shown are some benchmark values of the percentage of BUSCO genes recovered from the whole-genome assembly, a genome-guided transcriptome assembly, and the isoseq3 clusters for reference.
 
+We can zoom in on the data for samples with >200,000 reads to see that the trend is almost linear at this point.
+
+![fig2][fig2]
+
+If we fit a regression line to that data, and extrapolate out to 4 million CCS reads. We obtain the following.
+
+![fig3][fig3]
 
 ### Conclusions
 
 In our case one SMRT cell was clearly not enough to get a good representation of the genes. 
 
-Based on the extrapolations we would need ~4 million CCS reads to achieve the same results as the 
+Based on the extrapolations we would need ~4 million CCS reads to achieve the same results as the genome assembly threshhold. This corresponds to ~16 SMRT cells on the Sequel and 2-3 on the Sequel II.
 
 
 
@@ -157,7 +166,8 @@ All of the data and scripts required to check these observations are included in
 [screencap2]: /figures/NEBNext_Single_Cell_Low_Input_cDNA_Synthesis_and_Amplification_Module_FAQ.png "screencap2"
 
 [fig1]:/figures/Maccli_plot1.png
-
+[fig2]:/figures/Maccli_plot2.png
+[fig3]:/figures/Maccli_plot1_plus.png
 
 
 
