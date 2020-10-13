@@ -1,6 +1,6 @@
 
 ## Some thoughts on IsoSeq data, the isoseq3 pipeline, and the ToFU Cupcake pipeline
-
+R. Axel W. Wiberg and [Peter D. Fields](https://github.com/peterdfields)
 
 # 1. Primer contamination removal
 An early step in the isoseq3 analysis pipeline, and indeed any pipeline using isoseq data, is the removal of primer sequences (with [lima](https://github.com/pacificbiosciences/barcoding)) that are left over from the cDNA synthesis steps.
@@ -114,6 +114,10 @@ Now we can use these sequences that we have identified and re-run the lima step 
 
 ### Conclusions
 
+Make sure you know what protocol is being followed to produce the libraries and what primers are going into the sample.
+
+Fairly quick to check the first ~30 CCS reads as a sanity check that the primers are correct.
+
 
 
 # 2. cDNA_Cupcake pipeline: 
@@ -125,29 +129,34 @@ However, it's not clear what this rarefaction analysis is aiming to accomplish. 
 
 To answer this question a different standard is needed, a standard that is, at least to some degree, a measure of the total complement of transcripts.
 
-We performed a very similar rarefaction analysis as what is done in  but instead of measuring how many of all the discovered transcripts are present in each subsample, we measured the proportion (%) of complete BUSCO genes that are present in each subsample.
+We performed a very similar rarefaction analysis as what is done in cDNA_Cupcake, but instead of measuring how many of the set discovered transcripts are present in each subsample, we measured the proportion (%) of complete BUSCO genes that are present in each subsample.
+
+Full details can be followed in the R script that you can find in the ´´´scripts´´´ folder of this repository.
+
+Briefly, I use the clusters produced by the isoseq3 pipeline along with the ´´´*cluster_report.csv´´´ file which is produced bu the ´´´isoseq3 polish´´´ step
+
+
+![fig1][fig1]
 
 
 
+### Conclusions
+
+In our case one SMRT cell was clearly not enough to get a good representation of the genes. 
+
+Based on the extrapolations we would need ~4 million CCS reads to achieve the same results as the 
 
 
 
-
-
-
-
-
-Data statement:
+#### Data statement:
 All of the data and scripts required to check these observations are included in this repository.
-
-
 
 
 
 [screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
 [screencap2]: /figures/NEBNext_Single_Cell_Low_Input_cDNA_Synthesis_and_Amplification_Module_FAQ.png "screencap2"
 
-
+[fig1]:/figures/Maccli_plot1.png
 
 
 
