@@ -3,7 +3,7 @@
 
 
 # 1. Primer contamination removal
-An early step in the isoseq3 analysis pipeline, and indeed any pipeline using isoseq data, is the removal of primer sequences that are left over from the cDNA synthesis steps.
+An early step in the isoseq3 analysis pipeline, and indeed any pipeline using isoseq data, is the removal of primer sequences (with [lima](https://github.com/pacificbiosciences/barcoding)) that are left over from the cDNA synthesis steps.
 
 However, it's not immediately obvious what the primer sequences should actually look like. Several "official" sources give somewhat conflicting information.
 The result is that there are several sets of primer sequences that one could choose from.
@@ -24,7 +24,10 @@ Which, for some reason, gives two possibilities for a 5p primer.
 
 These, it is said, correspond to the Clontech SMARTer and NEB cDNA library prep kits, both of which are "officially recommended protocols".
 
-Indeed, an earlier (2014-2015) PacBio "Procedures and Checklist" document ("Procedure and Checklist -Isoform Sequencing (Iso-SeqTM) Using the Clontech ® SMARTer ® PCR cDNA Synthesis Kit and BluePippinTM Size-Selection System"; P/N100-377-100-05) lists the "SMARTer PCR cDNA Synthesis Kit" by Clontech (catalog numbers 634925 or 634926), as well as "Additional 5' PCR Primer IIA" as part of the required materials. (A later document "Procedure & Checklist -Iso-SeqTM Template Preparation for SequelTM Systems" P/N100-377-100-05 also cites these kits as required materials).
+Indeed, an earlier (2014-2015) PacBio "Procedures and Checklist" document 
+("Procedure and Checklist -Isoform Sequencing (Iso-SeqTM) Using the Clontech ® SMARTer ® PCR cDNA Synthesis Kit and BluePippinTM Size-Selection System"; P/N100-377-100-05) 
+
+lists the "SMARTer PCR cDNA Synthesis Kit" by Clontech (catalog numbers 634925 or 634926), as well as "Additional 5' PCR Primer IIA" as part of the required materials. (A later document "Procedure & Checklist -Iso-SeqTM Template Preparation for SequelTM Systems" P/N100-377-100-05 also cites these kits as required materials).
 
 The manual for the "SMARTer PCR cDNA Synthesis Kit" (available [here](https://www.takarabio.com/documents/User%20Manual/SMARTer%20PCR%20cDNA%20Synthesis%20Kit%20User%20Manual%20%28PT4097-1%29_040114.pdf)) lists the components and gives the sequences of the included primers:
 
@@ -42,12 +45,13 @@ Preparation for Sequel ® and Sequel II Systems"; PN 101-763-800 Version 02 (Oct
 The NEB website and FAQ (available [here](https://international.neb.com/products/e6421-nebnext-single-cell-low-input-cdna-synthesis-and-amplification-module#Product%20Information)) for this kit lists the sequences included:
 
 
-### [SEE SCREEN CAPTURE 2] ##
 ![screencap2][screencap2]
 
-Here, the first sequence (labelled NEBNext Template Switching Oligo") seems to contain the sequence labelled "Clontech_5p" above, but it contains several additional bases.
+
+Here, the first sequence (labelled "NEBNext Template Switching Oligo") seems to contain the sequence labelled "Clontech_5p" above, but it contains several additional bases.
 The second sequence sequence (labelled "NEBNext Single Cell RT Primer") also corresponds, with some differences, to the sequence labelled "Clontech_5p". 
 The final sequence similarly is a minor variation of the "Clontech_5p" sequence.
+I have highlighted the relevant parts in yellow
 
 So already there is a bit of confusion as to why exactly these sequences are recommended by the isoseq3 pipeline, since only some of them seem to correspond to sequences in the kits that are recommended in the workflows, and even then sometimes inexactly.
 
@@ -76,8 +80,7 @@ Finally, the most recent "Procedures and Checklist" document (PN 101-763-800), s
 In sum, it is really difficult to know a) what has/should have gone into the samples from the procedures and checklist documents, and b) which primer sequences we should be looking for to try to to remove.
 
 
-Thankfully, the primer removal steps with the lima tool (https://github.com/pacificbiosciences/barcoding) are quite quick for a single sample so we can run a few tests and compare results.
-
+Thankfully, the primer removal steps with the [lima](https://github.com/pacificbiosciences/barcoding) tool are quite quick for a single sample so we can run a few tests and compare results.
 
 
 
@@ -106,6 +109,10 @@ We can also check the raw CCS reads from our Iso-Seq runs manually to see if we 
 Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
 
 ### [INSERT TEST RESULTS HERE] # 
+
+
+
+### Conclusions
 
 
 

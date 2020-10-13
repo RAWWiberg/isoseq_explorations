@@ -1,0 +1,51 @@
+#----------------------------------------#
+# IsoSeqPrimers_Express_SMRTLink6.0.fasta
+# These are linked from a training guide (Iso-Seq-Express-Library-Preparation-Using-SMRTbell-Express-Template-Prep-Kit-2.0-–-Customer-Training)
+
+>5p IsoSeq Express Primer
+GCAATGAAGTCGCAGGGTT
+>3p IsoSeq Express Primer
+AAGCAGTGGTATCAACGCAGAGTAC
+
+[N.B. I had to change the names of these slightly to get them to work with lima. See the .fasta file]
+
+
+#-------------------------------------------#
+# NEBNext_lowInput_cDNA_synth_adapters.fasta
+# The NEB (New England Biosystems) NEBNext ® Single Cell/Low Input cDNA Synthesis & Amplification Module* is listed as a required kit in the most recent IsoSeq library prep protocols
+# (Procedure-Checklist-Iso-Seq-Express-Template-Preparation-for-Sequel-and-Sequel-II-Systems)
+
+>NEBNext_Template_Switching_Oligo 
+GCTAATCATTGCAAGCAGTGGTATCAACGCAGAGTACATrGrGrG
+>NEBNext_Single_Cell_RT_Primer
+AAGCAGTGGTATCAACGCAGAGTACTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTV
+>NEBNext_Single_Cell_cDNA_PCR_Primer
+AAGCAGTGGTATCAACGCAGAGT
+
+[N.B. I had to change the names of these slightly and make a guess as to their 3p or 5p placement to get them to work with lima. See the .fasta file]
+
+
+#----------------------#
+# primers_isoseq3.fasta
+# The below are from the isoseq3 website (https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md)
+
+>NEB_5p
+GCAATGAAGTCGCAGGGTTGGG
+>Clontech_5p
+AAGCAGTGGTATCAACGCAGAGTACATGGGG
+>NEB_Clontech_3p
+GTACTCTGCGTTGATACCACTGCTT
+
+
+#----------------------#
+# primers_empirical.fasta
+# The below are obtained by looking at the first 34 CCS reads from each sample and spotting sequences that look like one of the available ones from the .fasta files above.
+# The names of these primers refer to the original names of the sequence that they look like in their source .fasta files above.
+
+>IsoSeq_Express_Primer_3p
+AAGCAGTGGTATCAACGCAGAGTAC
+>NEB_5p
+GCAATGAAGTCGCAGGGTTGGG
+
+
+
