@@ -131,9 +131,9 @@ To answer this question a different standard is needed, a standard that is, at l
 
 We performed a very similar rarefaction analysis as what is done in cDNA_Cupcake, but instead of measuring how many of the set discovered transcripts are present in each subsample, we measured the proportion (%) of complete BUSCO genes that are present in each subsample.
 
-Full details can be followed in the R script that you can find in the ´´´scripts´´´ folder of this repository.
+Full details can be followed in the R script that you can find in the ´scripts´ folder of this repository.
 
-Briefly, I use the clusters produced by the isoseq3 pipeline along with the ´´´*cluster_report.csv´´´ file which is produced bu the ´´´isoseq3 polish´´´ step
+Briefly, I use the clusters produced by the isoseq3 pipeline along with the ´*cluster_report.csv´ file which is produced bu the ´isoseq3 polish´ step
 
 
 ![fig1][fig1]
