@@ -112,8 +112,8 @@ All of the data and scripts required to check these observations are included in
 [screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
 [screencap2]: /figures/NEBNext_Single_Cell_Low_Input_cDNA_Synthesis_and_Amplification_Module_FAQ.png "screencap2"
 [screencap3]: /figures/primer_removal_tests1.png "screencap3"
-[screencap3]: /figures/primers_in_sequences.png "screencap4"
-[screencap3]: /figures/primer_removal_tests2.png "screencap5"
+[screencap4]: /figures/primers_in_reads.png "screencap4"
+[screencap5]: /figures/primer_removal_tests2.png "screencap5"
 
 
 
