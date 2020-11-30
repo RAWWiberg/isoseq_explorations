@@ -76,12 +76,14 @@ Finally, the most recent "Procedures and Checklist" document (PN 101-763-800), s
 
 In sum, it is really difficult to know a) what has/should have gone into the samples from the procedures and checklist documents, and b) which primer sequences we should be looking for to try to to remove.
 
+### Testing
 
 Thankfully, the primer removal steps with the [lima](https://github.com/pacificbiosciences/barcoding) tool are quite quick for a single sample so we can run a few tests and compare results.
 
 
 ![screencap3][screencap3]
 
+Here we can see that the best results (most number of reads passing all threshholds, second row), are given by the set of primers given on the isoseq3 website (second column labelled "primers_isoseq3").
 
 We can also check the raw CCS reads from our Iso-Seq runs manually to see if we can spot the primers that have been incorporated. Doing this for the first 34 reads our samples we see the following:
 
@@ -96,17 +98,15 @@ Now we can use these sequences that we have identified and re-run the lima step 
 ![screencap5][screencap5]
 
 This figure shows the same columns as in the tests above as well as the primer removal steps using the primers that we empirically discovered from eyeballing the first 34 reads in the samples.
+The take home message from this is: a) We can see that there is the same number of input CCS reads (first row), and ii) The number of reads that pass all threshholds (second row) is highest for the test using the empirically identified primer sequences (last column).
+
 See the .xlsx file in the /data/ folder for full results, including ones from a second sample of isoseq data. The same conclusions apply there.
+
 
 ### Conclusions
 
 Make sure you know what protocol is being followed to produce the libraries and what primers are going into the sample.
-
-Fairly quick to check the first ~30 CCS reads as a sanity check that the primers are correct.
-
-
-#### Data statement:
-All of the data and scripts required to check these observations are included in this repository.
+Even if this is known it is a good idea and fairly quick to check the first ~30-50 CCS reads as a sanity check that the primers are correct.
 
 
 [screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
