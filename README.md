@@ -89,6 +89,7 @@ We can also check the raw CCS reads from our Iso-Seq runs manually to see if we 
 
 
 This example clearly shows that there are two common sequences at 5' and 3' ends of transcripts. These correspond to the sequences labelled "NEB_5p" and "3p IsoSeq Express Primer" above.
+See the files in the /data/ folder for full results from two separate isoseq samples.
 
 Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
 
@@ -102,7 +103,6 @@ See the .xlsx file in the /data/ folder for full results, including ones from a 
 Make sure you know what protocol is being followed to produce the libraries and what primers are going into the sample.
 
 Fairly quick to check the first ~30 CCS reads as a sanity check that the primers are correct.
-
 
 
 #### Data statement:
