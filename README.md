@@ -91,7 +91,14 @@ Here I have the first 60 bases of each of the first 34 reads of one sample. I ha
 This example clearly shows that there are two common sequences at 5' and 3' ends of transcripts. These correspond to the sequences labelled "NEB_5p" and "3p IsoSeq Express Primer" above.
 See the files in the /data/ folder for full results from two separate isoseq samples.
 
-Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
+Now we can use these sequences that we have identified and re-run the lima step to see if the results improve. I run lima with the following file (primers_empirical.fasta)
+
+	>IsoSeq_Express_Primer_3p
+	AAGCAGTGGTATCAACGCAGAGTAC
+	>NEB_5p
+	GCAATGAAGTCGCAGGGTTGGG
+
+
 #### Table 2
 ![screencap5][screencap5]
 
