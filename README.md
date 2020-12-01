@@ -70,17 +70,15 @@ Indeed the "Procedures and Checlist" (PN 101-763-800 above) refers to the "Iso-S
 
 Note that the sequence labelled "5p IsoSeq Express Primer" is the same as the sequence labelled "NEB_5p" above except missing the final 3 bases. Meanwhile the sequence labelled "3p IsoSeq Express Primer" is a close match to the "Clontech_5p" sequence, but missing the final 6 bases.
 
-
 Finally, the most recent "Procedures and Checklist" document (PN 101-763-800), says on page 5 to add the NEBNext cDNA primers as well as the Iso-Seq Epxress cDNA primers to the sample at the cDNA synthesis steps. But these full sequences are not given on the isoseq3 pipeline clustering workflow website.
 
-
-In sum, it is really difficult to know a) what has/should have gone into the samples from the procedures and checklist documents, and b) which primer sequences we should be looking for to try to to remove.
+In sum, it is really difficult to know from this diverse information a) what has/should have gone into the samples from the procedures and checklist documents, and b) which primer sequences we should be looking for to try to to remove.
 
 ### Testing
 
 Thankfully, the primer removal steps with the [lima](https://github.com/pacificbiosciences/barcoding) tool are quite quick for a single sample so we can run a few tests and compare results.
 
-
+####Table 1
 ![screencap3][screencap3]
 
 Here we can see that the best results (most number of reads passing all threshholds, second row), are given by the set of primers given on the isoseq3 website (second column labelled "primers_isoseq3").
@@ -89,15 +87,15 @@ We can also check the raw CCS reads from our Iso-Seq runs manually to see if we 
 
 ![screencap4][screencap4]
 
-
+Here I have the first 60 bases of each of the first 34 reads of one sample. I have highlighted the regions that correspond to one of the several primer sequences above (delimited with a '#') and at the end of the line I write which primer seems to be the best match.
 This example clearly shows that there are two common sequences at 5' and 3' ends of transcripts. These correspond to the sequences labelled "NEB_5p" and "3p IsoSeq Express Primer" above.
 See the files in the /data/ folder for full results from two separate isoseq samples.
 
 Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
-
+####Table 2
 ![screencap5][screencap5]
 
-This figure shows the same columns as in the tests above as well as the primer removal steps using the primers that we empirically discovered from eyeballing the first 34 reads in the samples.
+This figure shows the same columns as in table 1 above as well as the primer removal steps using the primers that we empirically discovered from eyeballing the first 34 reads in the samples.
 The take home message from this is: a) We can see that there is the same number of input CCS reads (first row), and ii) The number of reads that pass all threshholds (second row) is highest for the test using the empirically identified primer sequences (last column).
 
 See the .xlsx file in the /data/ folder for full results, including ones from a second sample of isoseq data. The same conclusions apply there.
@@ -105,8 +103,11 @@ See the .xlsx file in the /data/ folder for full results, including ones from a 
 
 ### Conclusions
 
-Make sure you know what protocol is being followed to produce the libraries and what primers are going into the sample.
-Even if this is known it is a good idea and fairly quick to check the first ~30-50 CCS reads as a sanity check that the primers are correct.
+1) Make sure you know what protocol is being followed to produce your libraries and what primers are going into the sample. Even if this is known, it is a good idea and fairly quick to check the first ~30-50 CCS reads as a sanity check that the primers are correct.
+
+2) None of the recommended sets of primers to use for adapter trimming, at least in this case, corresponds to the correct set of primers as determined empirically by looking at the reads. This is a problem!
+
+3) Using the correct set of primers results in the retention of more CCS reads during the trimming step.
 
 
 [screencap1]: /figures/SMARTer_PCR_cDNA_Synthesis_Kit_User_Manual_LoC.png "screencap1"
