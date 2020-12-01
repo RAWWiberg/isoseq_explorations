@@ -78,7 +78,7 @@ In sum, it is really difficult to know from this diverse information a) what has
 
 Thankfully, the primer removal steps with the [lima](https://github.com/pacificbiosciences/barcoding) tool are quite quick for a single sample so we can run a few tests and compare results.
 
-####Table 1
+#### Table 1
 ![screencap3][screencap3]
 
 Here we can see that the best results (most number of reads passing all threshholds, second row), are given by the set of primers given on the isoseq3 website (second column labelled "primers_isoseq3").
@@ -92,7 +92,7 @@ This example clearly shows that there are two common sequences at 5' and 3' ends
 See the files in the /data/ folder for full results from two separate isoseq samples.
 
 Now we can use these sequences that we have identified and re-run the lima step to see if the results improve
-####Table 2
+#### Table 2
 ![screencap5][screencap5]
 
 This figure shows the same columns as in table 1 above as well as the primer removal steps using the primers that we empirically discovered from eyeballing the first 34 reads in the samples.
