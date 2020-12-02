@@ -112,7 +112,7 @@ See the .xlsx file in the /data/ folder for full results, including ones from a 
 
 1) Make sure you know what protocol is being followed to produce your libraries and what primers are going into the sample. Even if this is known, it is a good idea and fairly quick to check the first ~30-50 CCS reads as a sanity check that the primers are correct.
 
-2) None of the recommended sets of primers to use for adapter trimming, at least in this case, corresponds to the correct set of primers as determined empirically by looking at the reads. This is a problem!
+2) None of the recommended sets of primers to use for adapter trimming, at least in this case, corresponds to the correct set of primers as determined empirically by looking at the reads.
 
 3) Using the correct set of primers results in the retention of more CCS reads during the trimming step.
 

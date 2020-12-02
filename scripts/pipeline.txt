@@ -1,0 +1,126 @@
+#####################################################################
+# 10. Iso-Seq
+#####################################################################
+
+#data
+subrDir=~/data/genome_Maccli/raw_reads/cDNA/IsoSeq/1_C01
+ccsDir=~/data/genome_Maccli/raw_reads/cDNA/IsoSeq/0000000676/outputs
+
+# IsoSeq3 Pipeline
+-------------------
+# Remove primers from ccs reads. N.B. NOT CLEAR WHICH PRIMERS TO USE 
+
+# i) using primers from "Example 1" of the isoseq3 manual (https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md)
+
+lima ${ccsDir}/m54273_200826_100915.ccs.bam ./primers_isoseq3.fasta ./m54273_200826_100915.noprimer.ccs.bam --isoseq
+
+# ii) using primers from NEBNext low input cDNA synthesis and amplification module. Recommended kit in "Procedure & Checklist – Iso-SeqTM Express Template
+Preparation for Sequel ® and Sequel II Systems". Sequences from: https://international.neb.com/products/e6421-nebnext-single-cell-low-input-cdna-synthesis-and-amplification-module#FAQs%20&%20Troubleshooting)
+
+# N.B. I modified the sequences from the website to remove the poly-T tail of the "NEBNext Single Cell RT Primer" sequence and also the "r" characters in the "NEBNext Template Switching Oligo" sequences. Moreover, I assumed that the "NEBNext Template Switching Oligo" was the 5prime and the others are both 3prime
+
+lima ${ccsDir}/m54273_200826_100915.ccs.bam ./NEBNext_lowInput_cDNA_synth_adapters.fasta ./m54273_200826_100915.noprimer_NEBNext.ccs.bam --isoseq
+
+# iii) using primers from IsoSeq Express Primers. Manual: (https://www.pacb.com/wp-content/uploads/Procedure-Checklist-Iso-Seq-Express-Template-Preparation-for-Sequel-and-Sequel-II-Systems.pdf), Fasta file: https://www.pacb.com/wp-content/uploads/IsoSeqPrimers_Express_SMRTLink6.0.fasta_.zip
+
+lima ${ccsDir}/m54273_200826_100915.ccs.bam ./IsoSeqPrimers_Express_SMRTLink6.0.fasta ./m54273_200826_100915.noprimer_IsoSeqExpress.ccs.bam --isoseq
+
+# iv) using primer sequences empirically check from the ccs reads and compared to all of the above sequences.
+
+lima ${ccsDir}/m54273_200826_100915.ccs.bam ./primers_empirical.fasta ./m54273_200826_100915.noprimer_empirical.ccs.bam --isoseq
+
+
+
+# Refine reads by removing poly A tails and solving chimaeric reads 
+isoseq3 refine -j 20 m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.bam primers_isoseq3.fasta m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.flnc.bam --require-polya
+isoseq3 refine -j 20 m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.bam IsoSeqPrimers_Express_SMRTLink6.0.fasta m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.flnc.bam --require-polya
+isoseq3 refine -j 20 m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.bam primers_empirical.fasta m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.flnc.bam --require-polya
+
+# Cluster similar isoforms
+isoseq3 cluster -j 20 m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.flnc.bam m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.bam --verbose --use-qvs
+isoseq3 cluster -j 20 m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.flnc.bam m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.bam --verbose --use-qvs
+isoseq3 cluster -j 20 m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.flnc.bam m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.clustered.bam --verbose --use-qvs
+
+isoseq3 polish -j 20 m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.bam ${subrDir}/m54273_200826_100915.subreadset.xml m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.bam
+isoseq3 polish -j 40 m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.bam ${subrDir}/m54273_200826_100915.subreadset.xml m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.polished.bam
+isoseq3 polish -j 40 m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.clustered.bam ${subrDir}/m54273_200826_100915.subreadset.xml m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.bam
+
+
+# Map the polished transcripts to the current (v1) genome assembly
+
+minimap2 -ax splice -t 10 -uf --secondary=no -C5 ../../polished/Maccli_genome_polished_snpsindels.fasta ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.fastq > ./Maccli_genome_polished_m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.fastq.sam
+
+samtools sort -@ 10 ./Maccli_genome_polished_m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.fastq.sam | samtools view -b > ./Maccli_genome_polished_m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.fastq.srt.bam
+
+samtools index ./Maccli_genome_polished_m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.fastq.srt.bam
+
+conda deactivate
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ToFU Pipeline (does weird stuff, may not be necessary)
+---------------
+conda activate pb-assembly
+
+## Rarefaction Curve:
+# Map the clustered isoforms to the genome
+gunzip m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq.gz
+
+# Use the arrow2 assembly (had the "best" stats).
+minimap2 -ax splice -t 10 -uf --secondary=no -C5 ../../arrow_polish/Maccli_23b-7d_curated_l5_m55_h190_a60_arrow2.fasta ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq > ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq.sam
+
+sort -k 3,3 -k 4,4n ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq.sam > ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq.srt.sam
+
+collapse_isoforms_by_sam.py -c 0.98 -i 0.95 --input ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq --fq -s ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.fastq.srt.sam --dun-merge-5-shorter -o ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq
+
+seqtk seq -A ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.collapsed.rep.fq | sed 's;/;_;g' > ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.collapsed.rep.fa
+
+get_abundance_post_collapse.py ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.collapsed ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.cluster_report.csv
+
+conda deactivate
+conda activate busco
+
+busco -f -i ./m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.collapsed.rep.fa --cpu 20 --out m54273_200826_100915.noprimer_empirical.ccs.IsoSeq_Express_Primer_3p--NEB_5p.polished.hq.collapsed.rep.busco -m tran -l ~/miniconda3/envs/busco/busco_downloads/lineages/metazoa_odb10
+
+conda deactivate
+conda activate pb-assembly
+
+python3 ~/packages/cDNA_Cupcake/annotation/make_file_for_subsampling_from_collapsed.py -i ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.collapsed -o ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.for_subsampling.txt
+
+python3 ~/packages/cDNA_Cupcake/annotation/subsample.py --by pbgene --min_fl_count 2 --step 1000 --range ("1000,3000")./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.for_subsampling.txt.all.txt  > ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.1to3k.by_pbgene.rarefaction.all.txt
+
+python3 ~/packages/cDNA_Cupcake/annotation/subsample.py --by pbgene --min_fl_count 2 --step 1000 ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.for_subsampling.txt.all.txt  > ./m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.1to3k.by_pbgene.rarefaction.all.txt
+
+conda deactivate
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Run BUSCO (might be many duplicates because, some isoforms will be sequenced multiple times)
+conda activate busco
+gunzip m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.fasta.gz
+
+sed 's;/;_;g' m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.fasta > m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.clean.fasta
+
+busco -i m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.clean.fasta --cpu 20 --out m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.busco -m tran -l ~/miniconda3/envs/busco/busco_downloads/lineages/metazoa_odb10
+
+rm m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.clean.fasta
+
+gzip m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.clustered.hq.fasta
+
+
+busco -f -i m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.collapsed.rep.fa --cpu 30 --out m54273_200826_100915.noprimer.ccs.NEB_5p--NEB_Clontech_3p.polished.hq.collapsed.rep.busco -m tran -l  ~/miniconda3/envs/busco/busco_downloads/lineages/metazoa_odb10
+
+
+
+
+gunzip m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.fasta.gz
+
+sed 's;/;_;g' m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.fasta > m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.clean.fasta
+
+busco -i m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.clean.fasta --cpu 30 --out m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.busco -m tran -l  ~/miniconda3/envs/busco/busco_downloads/lineages/metazoa_odb10
+
+rm m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.clean.fasta
+
+gzip m54273_200826_100915.noprimer_IsoSeqExpress.ccs.IsoSeq_Express_Primer_5p--IsoSeq_Express_Primer_3p.clustered.hq.fasta
+
+conda deactivate 
+
